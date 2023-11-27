@@ -1,5 +1,3 @@
-#!/bin/zsh
-
 #
 # This program lists all paired devices which you can select from, the selected one
 # will be connected
