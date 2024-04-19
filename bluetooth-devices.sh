@@ -14,6 +14,18 @@ fi
 # Get MAC adress of the device you selected
 MAC=$(bluetoothctl devices | grep "$DEVICE" | sed 's/[^ ]* //' | cut -d ' ' -f1)
 
+# If bluetooth device is already connected, disconnect
+CONNECTED=$(bluetoothctl devices Connected | cut -f3 -d ' ')
+if echo $CONNECTED | grep $DEVICE; then
+    if bluetoothctl disconnect $MAC | grep -q 'successful' 
+    then
+        notify-send -t 5000 -r 2954 -u normal "  Disconnected successfully from" "     $DEVICE"
+    else 
+        notify-send -t 5000 -r 2954 -u normal "  Couldn't disconnect from" "     $DEVICE"
+    fi 
+    exit 0
+fi
+
 # Send a notify whether the connection was successful 
 if bluetoothctl connect $MAC | grep -q 'successful' 
 then
