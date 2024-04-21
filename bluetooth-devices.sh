@@ -3,7 +3,7 @@
 # will be connected / disconnected 
 #   
 
-connect_bluetooth(){
+connect_bluetooth() {
     local MAC=$1
     local DEVICE=$2
     if bluetoothctl connect $MAC | grep -q 'successful' 
