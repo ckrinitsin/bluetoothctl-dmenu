@@ -15,7 +15,7 @@ connect_bluetooth() {
 }
 
 
-disconnect_bluetooth(){
+disconnect_bluetooth() {
     local MAC=$1
     local DEVICE=$2
     if bluetoothctl disconnect $MAC | grep -q 'successful' 
@@ -26,7 +26,7 @@ disconnect_bluetooth(){
     fi
 }
 
-# Opens dmenu prompt, which lets you decide which device you want to connect to
+# Opens dmenu prompt, which lets you decide which device you want to connect to / disconnect from
 DEVICE=$(bluetoothctl devices | sed 's/[^ ]* //' | sed 's/[^ ]* //' | dmenu -i)
 
 # If dmenu was cancelled, exit program
