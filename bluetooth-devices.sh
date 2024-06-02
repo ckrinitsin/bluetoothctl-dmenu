@@ -18,7 +18,7 @@ connect_bluetooth() {
 disconnect_bluetooth() {
     local MAC=$1
     local DEVICE=$2
-    if bluetoothctl disconnect $MAC | grep -q 'successful' 
+    if bluetoothctl disconnect $MAC | grep -q 'Successful' 
     then
         notify-send -t 5000 -r 2954 -u normal "  Disconnected successfully from" "     $DEVICE"
     else 
